@@ -1,17 +1,18 @@
 package com.andrecastrom.miscontactosfragment;
 
-import android.content.Intent;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutCompat;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+
+import com.andrecastrom.miscontactosfragment.adapter.ContactoAdaptador;
+import com.andrecastrom.miscontactosfragment.adapter.PageAdapter;
+import com.andrecastrom.miscontactosfragment.fragment.PerfilFragment;
+import com.andrecastrom.miscontactosfragment.fragment.RecyclerViewFragment;
+import com.andrecastrom.miscontactosfragment.pojo.Contacto;
 
 import java.util.ArrayList;
 
@@ -19,17 +20,28 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayList<Contacto> contactos;
     private RecyclerView listaContactos;
+    private Toolbar toolbar;
+    private TabLayout tabLayout;
+    private ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        /*
         Toolbar miActionBar = (Toolbar) findViewById(R.id.miActionBar);
         setSupportActionBar(miActionBar);
+        */
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        tabLayout = (TabLayout) findViewById(R.id.tabLayout);
+        viewPager = (ViewPager) findViewById(R.id.viewPager);
+        setUpViewPager();
+
 
         listaContactos = (RecyclerView) findViewById(R.id.rvContactos);
 
+        /*
         LinearLayoutManager llm = new LinearLayoutManager(this);
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         //GridLayoutManager glm = new GridLayoutManager(this, 2);
@@ -38,6 +50,11 @@ public class MainActivity extends AppCompatActivity {
 
         inicializarLitaContactos();
         inicializarAdaptador();
+        */
+
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+        }
 
         /*
         ArrayList<String> nombresContacto = new ArrayList<>();
@@ -66,6 +83,17 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private ArrayList<Fragment> agregarFragments() {
+        ArrayList<Fragment> fragments = new ArrayList<>();
+        fragments.add(new RecyclerViewFragment());
+        fragments.add(new PerfilFragment());
+        return fragments;
+    }
+
+    private void setUpViewPager() {
+        viewPager.setAdapter(new PageAdapter(getSupportFragmentManager(), agregarFragments()));
+        tabLayout.setupWithViewPager(viewPager);
+    }
 
     public void inicializarLitaContactos() {
         contactos = new ArrayList<Contacto>();

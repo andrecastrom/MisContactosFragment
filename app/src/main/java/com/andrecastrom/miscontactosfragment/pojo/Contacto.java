@@ -1,4 +1,4 @@
-package com.andrecastrom.miscontactosfragment;
+package com.andrecastrom.miscontactosfragment.pojo;
 
 /**
  * Created by 47369176d on 24/10/2016.

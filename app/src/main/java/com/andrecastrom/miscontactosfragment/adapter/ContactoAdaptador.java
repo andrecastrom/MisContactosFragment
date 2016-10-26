@@ -1,9 +1,8 @@
-package com.andrecastrom.miscontactosfragment;
+package com.andrecastrom.miscontactosfragment.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
-import android.test.suitebuilder.TestMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +10,10 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.andrecastrom.miscontactosfragment.pojo.Contacto;
+import com.andrecastrom.miscontactosfragment.DetalleContacto;
+import com.andrecastrom.miscontactosfragment.R;
 
 import java.util.ArrayList;
 
