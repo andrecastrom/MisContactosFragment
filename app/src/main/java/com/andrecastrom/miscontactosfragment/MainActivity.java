@@ -78,8 +78,8 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(new PageAdapter(getSupportFragmentManager(), agregarFragments()));
         tabLayout.setupWithViewPager(viewPager);
 
-        tabLayout.getTabAt(0).setIcon(R.drawable.ic_cardlist);
-        tabLayout.getTabAt(1).setIcon(R.drawable.ic_contacts);
+        tabLayout.getTabAt(0).setIcon(R.drawable.lista);
+        tabLayout.getTabAt(1).setIcon(R.drawable.person);
     }
 
 
