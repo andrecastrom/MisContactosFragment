@@ -18,8 +18,6 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    ArrayList<Contacto> contactos;
-    private RecyclerView listaContactos;
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
@@ -37,20 +35,6 @@ public class MainActivity extends AppCompatActivity {
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         setUpViewPager();
-
-
-        listaContactos = (RecyclerView) findViewById(R.id.rvContactos);
-
-        /*
-        LinearLayoutManager llm = new LinearLayoutManager(this);
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-        //GridLayoutManager glm = new GridLayoutManager(this, 2);
-
-        listaContactos.setLayoutManager(llm);
-
-        inicializarLitaContactos();
-        inicializarAdaptador();
-        */
 
         if (toolbar != null) {
             setSupportActionBar(toolbar);
@@ -93,21 +77,10 @@ public class MainActivity extends AppCompatActivity {
     private void setUpViewPager() {
         viewPager.setAdapter(new PageAdapter(getSupportFragmentManager(), agregarFragments()));
         tabLayout.setupWithViewPager(viewPager);
+
+        tabLayout.getTabAt(0).setIcon(R.drawable.ic_cardlist);
+        tabLayout.getTabAt(1).setIcon(R.drawable.ic_contacts);
     }
 
-    public void inicializarLitaContactos() {
-        contactos = new ArrayList<Contacto>();
-
-        contactos.add(new Contacto(R.drawable.lollipop, "Pepito Grillo","666777888", "pepito@gmail.com"));
-        contactos.add(new Contacto(R.drawable.mushroom, "Caperucita Roja","61234567", "caperu@gmail.com"));
-        contactos.add(new Contacto(R.drawable.shock_rave, "Blanca Nieves","652123456", "blanca@gmail.com"));
-        contactos.add(new Contacto(R.drawable.banana, "Lobo Feroz","698745623", "lobito@gmail.com"));
-        //contactos.add(new Contacto("Santa Claus","699888555", "noelsanta@gmail.com"));
-    }
-
-    public void inicializarAdaptador() {
-        ContactoAdaptador adaptador = new ContactoAdaptador(contactos, this);
-        listaContactos.setAdapter(adaptador);
-    }
 
 }
