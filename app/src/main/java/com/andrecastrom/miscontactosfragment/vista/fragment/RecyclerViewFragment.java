@@ -1,4 +1,4 @@
-package com.andrecastrom.miscontactosfragment.fragment;
+package com.andrecastrom.miscontactosfragment.vista.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import com.andrecastrom.miscontactosfragment.R;
 import com.andrecastrom.miscontactosfragment.adapter.ContactoAdaptador;
 import com.andrecastrom.miscontactosfragment.pojo.Contacto;
+import com.andrecastrom.miscontactosfragment.presentador.IRecycleViewFragmentPresenter;
+import com.andrecastrom.miscontactosfragment.presentador.RecycleViewFragmentPresenter;
 
 import java.util.ArrayList;
 
@@ -19,10 +21,11 @@ import java.util.ArrayList;
  * Created by 47369176d on 26/10/2016.
  */
 
-public class RecyclerViewFragment extends Fragment {
+public class RecyclerViewFragment extends Fragment implements IRecycleViewFragmentView{
 
-    ArrayList<Contacto> contactos;
+    private ArrayList<Contacto> contactos;
     private RecyclerView listaContactos;
+    private IRecycleViewFragmentPresenter presenter;
 
     @Nullable
     @Override
@@ -32,21 +35,18 @@ public class RecyclerViewFragment extends Fragment {
 
         listaContactos = (RecyclerView) v.findViewById(R.id.rvContactos);
 
-        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
-        llm.setOrientation(LinearLayoutManager.VERTICAL);
-        //GridLayoutManager glm = new GridLayoutManager(this, 2);
+        presenter = new RecycleViewFragmentPresenter(this, getContext());
+        presenter.obtenerContactosBaseDatos();
 
-        listaContactos.setLayoutManager(llm);
-
-        inicializarLitaContactos();
-        inicializarAdaptador();
+//        inicializarListaContactos();
 
 
 
         return v;
     }
 
-    public void inicializarLitaContactos() {
+    /*
+    public void inicializarListaContactos() {
         contactos = new ArrayList<Contacto>();
 
         contactos.add(new Contacto(R.drawable.lollipop, "Pepito Grillo","666777888", "pepito@gmail.com"));
@@ -55,10 +55,24 @@ public class RecyclerViewFragment extends Fragment {
         contactos.add(new Contacto(R.drawable.banana, "Lobo Feroz","698745623", "lobito@gmail.com"));
         //contactos.add(new Contacto("Santa Claus","699888555", "noelsanta@gmail.com"));
     }
+    */
 
-    public void inicializarAdaptador() {
-        ContactoAdaptador adaptador = new ContactoAdaptador(contactos, getActivity());
-        listaContactos.setAdapter(adaptador);
+    @Override
+    public void generarLinearLayoutVertical() {
+        LinearLayoutManager llm = new LinearLayoutManager(getActivity());
+        llm.setOrientation(LinearLayoutManager.VERTICAL);
+        //GridLayoutManager glm = new GridLayoutManager(this, 2);
+        listaContactos.setLayoutManager(llm);
     }
 
+    @Override
+    public ContactoAdaptador crearAdaptador(ArrayList<Contacto> contactos) {
+        ContactoAdaptador adaptador = new ContactoAdaptador(contactos, getActivity());
+        return adaptador;
+    }
+
+    @Override
+    public void inicializarAdaptadorRV(ContactoAdaptador adaptador) {
+        listaContactos.setAdapter(adaptador);
+    }
 }

@@ -1,4 +1,4 @@
-package com.andrecastrom.miscontactosfragment.fragment;
+package com.andrecastrom.miscontactosfragment.vista.fragment;
 
 
 import android.os.Bundle;

@@ -5,14 +5,11 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
-import com.andrecastrom.miscontactosfragment.adapter.ContactoAdaptador;
 import com.andrecastrom.miscontactosfragment.adapter.PageAdapter;
-import com.andrecastrom.miscontactosfragment.fragment.PerfilFragment;
-import com.andrecastrom.miscontactosfragment.fragment.RecyclerViewFragment;
-import com.andrecastrom.miscontactosfragment.pojo.Contacto;
+import com.andrecastrom.miscontactosfragment.vista.fragment.PerfilFragment;
+import com.andrecastrom.miscontactosfragment.vista.fragment.RecyclerViewFragment;
 
 import java.util.ArrayList;
 
