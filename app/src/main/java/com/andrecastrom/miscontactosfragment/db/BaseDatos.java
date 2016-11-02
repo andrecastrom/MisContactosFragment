@@ -69,6 +69,8 @@ public class BaseDatos extends SQLiteOpenHelper {
             contacto.setEmail(registros.getString(3));
             contacto.setFoto(registros.getInt(4));
 
+            contacto.setLikes(obtenerLikesContacto(contacto));
+
             contactos.add(contacto);
         }
         db.close();
@@ -82,6 +84,26 @@ public class BaseDatos extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
         db.insert(ConstantesBaseDatos.TABLE_CONTACTS, null, contentValues);
         db.close();
+    }
+
+    public void insertarLikeContacto (ContentValues contentValues) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.insert(ConstantesBaseDatos.TABLE_LIKES_CONTACT, null, contentValues);
+        db.close();
+    }
+
+    public int obtenerLikesContacto(Contacto contacto) {
+        int likes = 0;
+        String query = "SELECT COUNT( " + ConstantesBaseDatos.TABLE_LIKES_CONTACT_NUMERO_LIKES + " ) " +
+                " FROM " + ConstantesBaseDatos.TABLE_LIKES_CONTACT +
+                " WHERE " + ConstantesBaseDatos.TABLE_LIKES_CONTACT_ID_CONTACTO + " = " + contacto.getId();
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor registros = db.rawQuery(query, null);
+        if (registros.moveToNext()) {
+            likes = registros.getInt(0);
+        }
+
+        return likes;
     }
 
 }

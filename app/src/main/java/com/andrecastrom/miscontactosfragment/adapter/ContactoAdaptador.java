@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.andrecastrom.miscontactosfragment.db.ConstructorContactos;
 import com.andrecastrom.miscontactosfragment.pojo.Contacto;
 import com.andrecastrom.miscontactosfragment.DetalleContacto;
 import com.andrecastrom.miscontactosfragment.R;
@@ -41,18 +42,12 @@ public class ContactoAdaptador extends RecyclerView.Adapter<ContactoAdaptador.Co
 
     //Asocia cada elemento de la lista con cada view
     @Override
-    public void onBindViewHolder(ContactoViewHolder contactoViewHolder, int position) {
+    public void onBindViewHolder(final ContactoViewHolder contactoViewHolder, int position) {
         final Contacto contacto = contactos.get(position);
         contactoViewHolder.imgFoto.setImageResource(contacto.getFoto());
         contactoViewHolder.tvNombreCV.setText(contacto.getNombre());
         contactoViewHolder.tvTelefonoCV.setText(contacto.getTelefono());
         contactoViewHolder.tvLikes.setText(String.valueOf(contacto.getLikes()) + " Likes");
-        contactoViewHolder.btnLike.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(activity, "Diste like a " + contacto.getNombre(), Toast.LENGTH_SHORT).show();
-            }
-        });
 
         contactoViewHolder.imgFoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -65,6 +60,18 @@ public class ContactoAdaptador extends RecyclerView.Adapter<ContactoAdaptador.Co
                 activity.startActivity(intent);
             }
         });
+
+        contactoViewHolder.btnLike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(activity, "Diste like a " + contacto.getNombre(), Toast.LENGTH_SHORT).show();
+                ConstructorContactos constructorContactos = new ConstructorContactos(activity);
+                constructorContactos.darLikeContacto(contacto);
+                int likes = constructorContactos.obtenerLikesContacto(contacto);
+                contactoViewHolder.tvLikes.setText(String.valueOf(likes) + " Likes");
+            }
+        });
+
     }
 
     @Override

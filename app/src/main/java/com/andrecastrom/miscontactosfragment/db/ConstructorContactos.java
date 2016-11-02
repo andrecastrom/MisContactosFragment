@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 public class ConstructorContactos {
 
+    private static final int LIKE = 1;
     private Context context;
 
     public ConstructorContactos(Context context) {
@@ -53,8 +54,20 @@ public class ConstructorContactos {
         contentValues.put(ConstantesBaseDatos.TABLE_CONTACTS_EMAIL, "blanca@gmail.com");
         contentValues.put(ConstantesBaseDatos.TABLE_CONTACTS_FOTO, R.drawable.shock_rave);
         db.insertarContacto(contentValues);
-
     }
 
+    public void darLikeContacto(Contacto contacto) {
+        BaseDatos db = new BaseDatos(context);
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(ConstantesBaseDatos.TABLE_LIKES_CONTACT_ID_CONTACTO, contacto.getId());
+        contentValues.put(ConstantesBaseDatos.TABLE_LIKES_CONTACT_NUMERO_LIKES, LIKE);
+        db.insertarLikeContacto(contentValues);
+    }
+
+
+    public int obtenerLikesContacto(Contacto contacto) {
+        BaseDatos db = new BaseDatos(context);
+        return db.obtenerLikesContacto(contacto);
+    }
 
 }
