@@ -13,6 +13,10 @@ public class Contacto {
     private int foto;
     private int likes;
 
+    public Contacto() {
+
+    }
+
     public int getId() {
         return id;
     }
