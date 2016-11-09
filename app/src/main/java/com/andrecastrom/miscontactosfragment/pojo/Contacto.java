@@ -6,62 +6,51 @@ package com.andrecastrom.miscontactosfragment.pojo;
 
 public class Contacto {
 
-    private int id;
-    private String nombre;
-    private String telefono;
-    private String email;
-    private int foto;
+    private String id;
+    private String nombreCompleto;
+    private String urlFoto;
     private int likes;
 
     public Contacto() {
-
     }
 
-    public int getId() {
+    public Contacto(String nombreCompleto, String urlFoto, String email, int likes) {
+        this.nombreCompleto = nombreCompleto;
+        this.urlFoto = urlFoto;
+        this.likes = likes;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getNombreCompleto() {
+        return nombreCompleto;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setNombreCompleto(String nombreCompleto) {
+        this.nombreCompleto = nombreCompleto;
     }
 
-    public String getTelefono() {
-        return telefono;
+    public String getUrlFoto() {
+        return urlFoto;
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public void setUrlFoto(String urlFoto) {
+        this.urlFoto = urlFoto;
     }
 
-    public String getEmail() {
-        return email;
+    public int getLikes() {
+        return likes;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public int getFoto() {return foto; }
-
-    public void setFoto(int foto) { this.foto = foto; }
-
-    public int getLikes() { return likes; }
-
-    public void setLikes(int likes) { this.likes = likes; }
-
-    public Contacto(int foto, String nombre, String telefono, String email, int likes) {
-        this.foto = foto;
-        this.nombre = nombre;
-        this.telefono = telefono;
-        this.email = email;
+    public void setLikes(int likes) {
         this.likes = likes;
     }
+
+
 }

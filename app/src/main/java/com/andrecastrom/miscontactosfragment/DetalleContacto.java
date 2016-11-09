@@ -9,14 +9,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class DetalleContacto extends AppCompatActivity {
 
-    private TextView tvNombre;
-    private TextView tvTelefono;
-    private TextView tvEmail;
+    private static final String KEY_EXTRA_URL = "url";
+    private static final String KEY_EXTRA_LIKES = "like";
+
+//    private TextView tvNombre;
+//    private TextView tvTelefono;
+//    private TextView tvEmail;
+    private ImageView imgFotoDetalle;
+    private TextView tvLikesDetalle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,19 +30,16 @@ public class DetalleContacto extends AppCompatActivity {
         setContentView(R.layout.activity_detalle_contacto);
 
         Bundle parametros = getIntent().getExtras();
-        String nombre = parametros.getString(getResources().getString(R.string.pnombre));
-        String telefono = parametros.getString(getResources().getString(R.string.ptelefono));
-        String email = parametros.getString(getResources().getString(R.string.pemail));
+        String url = parametros.getString(KEY_EXTRA_URL);
+        int likes = parametros.getInt(KEY_EXTRA_URL);
 
-        tvNombre = (TextView) findViewById(R.id.tvNombre);
-        tvTelefono = (TextView) findViewById(R.id.tvTelefono);
-        tvEmail = (TextView) findViewById(R.id.tvEmail);
+        tvLikesDetalle = (TextView) findViewById(R.id.tvLikesDetalle);
+        imgFotoDetalle = (ImageView) findViewById(R.id.imgFotoDetalle);
 
-        tvNombre.setText(nombre);
-        tvTelefono.setText(telefono);
-        tvEmail.setText(email);
+        tvLikesDetalle.setText(String.valueOf(likes));
+
     }
-
+/*
     public void llamar(View v) {
         String telefono = tvTelefono.getText().toString();
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
@@ -63,7 +66,7 @@ public class DetalleContacto extends AppCompatActivity {
         emailIntent.setType("message/rfc822");
         startActivity(Intent.createChooser(emailIntent,"Email"));
     }
-
+*/
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 //        if (keyCode == KeyEvent.KEYCODE_BACK) {
