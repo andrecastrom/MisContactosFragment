@@ -3,6 +3,7 @@
     package="com.andrecastrom.miscontactosfragment">
 
     <uses-permission android:name="android.permission.CALL_PHONE"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
 
     <application
         android:allowBackup="true"

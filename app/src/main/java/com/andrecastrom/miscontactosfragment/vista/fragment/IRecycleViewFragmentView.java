@@ -9,6 +9,8 @@ public interface IRecycleViewFragmentView {
 
     public void generarLinearLayoutVertical();
 
+    public void generarGridLayoutVertical();
+
     public ContactoAdaptador crearAdaptador(ArrayList<Contacto> contactos);
 
     public void inicializarAdaptadorRV(ContactoAdaptador adaptador);

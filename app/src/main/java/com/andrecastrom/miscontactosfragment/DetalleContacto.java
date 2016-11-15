@@ -13,6 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
 public class DetalleContacto extends AppCompatActivity {
 
     private static final String KEY_EXTRA_URL = "url";
@@ -27,7 +29,7 @@ public class DetalleContacto extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detalle_contacto);
+        setContentView(R.layout.activity_detalle_contacto_foto);
 
         Bundle parametros = getIntent().getExtras();
         String url = parametros.getString(KEY_EXTRA_URL);
@@ -37,6 +39,11 @@ public class DetalleContacto extends AppCompatActivity {
         imgFotoDetalle = (ImageView) findViewById(R.id.imgFotoDetalle);
 
         tvLikesDetalle.setText(String.valueOf(likes));
+
+        Picasso.with(this)
+                .load(url)
+                .placeholder(R.drawable.shock_rave_2)
+                .into(imgFotoDetalle);
 
     }
 /*

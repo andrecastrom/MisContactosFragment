@@ -8,6 +8,8 @@ public interface IRecycleViewFragmentPresenter {
 
     public void obtenerContactosBaseDatos();
 
+    public void obtenerMediosRecietnes();
+
     public void mostrarContactosRV();
 
 }

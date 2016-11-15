@@ -15,6 +15,7 @@ import com.andrecastrom.miscontactosfragment.db.ConstructorContactos;
 import com.andrecastrom.miscontactosfragment.pojo.Contacto;
 import com.andrecastrom.miscontactosfragment.DetalleContacto;
 import com.andrecastrom.miscontactosfragment.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -45,9 +46,13 @@ public class ContactoAdaptador extends RecyclerView.Adapter<ContactoAdaptador.Co
     public void onBindViewHolder(final ContactoViewHolder contactoViewHolder, int position) {
         final Contacto contacto = contactos.get(position);
         //contactoViewHolder.imgFoto.setImageResource(contacto.getUrlFoto());
+        Picasso.with(activity)
+                .load(contacto.getUrlFoto())
+                .placeholder(R.drawable.shock_rave_2)
+                .into(contactoViewHolder.imgFoto);
 //        contactoViewHolder.tvNombreCV.setText(contacto.getNombre());
 //        contactoViewHolder.tvTelefonoCV.setText(contacto.getTelefono());
-        contactoViewHolder.tvLikes.setText(String.valueOf(contacto.getLikes()) + " Likes");
+        contactoViewHolder.tvLikes.setText(String.valueOf(contacto.getLikes()));
 
         contactoViewHolder.imgFoto.setOnClickListener(new View.OnClickListener() {
             @Override

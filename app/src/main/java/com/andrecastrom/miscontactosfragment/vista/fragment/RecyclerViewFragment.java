@@ -3,6 +3,7 @@ package com.andrecastrom.miscontactosfragment.vista.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -63,6 +64,12 @@ public class RecyclerViewFragment extends Fragment implements IRecycleViewFragme
         llm.setOrientation(LinearLayoutManager.VERTICAL);
         //GridLayoutManager glm = new GridLayoutManager(this, 2);
         listaContactos.setLayoutManager(llm);
+    }
+
+    @Override
+    public void generarGridLayoutVertical() {
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getContext(),2);
+        listaContactos.setLayoutManager(gridLayoutManager);
     }
 
     @Override
