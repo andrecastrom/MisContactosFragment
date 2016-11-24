@@ -4,9 +4,14 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.transition.Fade;
+import android.transition.Slide;
+import android.transition.Transition;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -44,6 +49,40 @@ public class DetalleContacto extends AppCompatActivity {
                 .load(url)
                 .placeholder(R.drawable.shock_rave_2)
                 .into(imgFotoDetalle);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Slide slide = new Slide(Gravity.LEFT);
+            slide.setDuration(1500);
+            getWindow().setEnterTransition(slide);
+            //Si queremos actuar sobre el ciclo de vida de la transicion
+            slide.addListener(new Transition.TransitionListener() {
+                @Override
+                public void onTransitionStart(Transition transition) {
+                    Toast.makeText(DetalleContacto.this, "Empezando transicion", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onTransitionEnd(Transition transition) {
+                    Toast.makeText(DetalleContacto.this, "Terminando transicion", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onTransitionCancel(Transition transition) {
+
+                }
+
+                @Override
+                public void onTransitionPause(Transition transition) {
+
+                }
+
+                @Override
+                public void onTransitionResume(Transition transition) {
+
+                }
+            });
+            getWindow().setReturnTransition(new Fade());
+        }
 
     }
 /*
